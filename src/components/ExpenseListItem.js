@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import numeral from 'numeral';
 
 class ExpenseListItem extends Component {
   render() {
@@ -10,7 +11,14 @@ class ExpenseListItem extends Component {
         <Link to={`/edit/${item.id}`}>
           <h3>{item.description}</h3>
         </Link>
-        <p>{`${item.amount} - ${item.note} - ${moment(item.createdAt).format('MMM Do, YYYY')}`}</p>
+        <p>
+          {numeral(item.amount).format('$0,0.00')}
+          -- 
+          {moment(item.createdAt).format('MMM Do, YYYY')}
+        </p>
+        <p>
+          {item.note}
+        </p>
       </div>
     );
   }

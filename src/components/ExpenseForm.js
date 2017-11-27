@@ -9,16 +9,16 @@ const now = moment();
 class ExpenseForm extends Component {
   constructor(props) {
     super(props);
-    
-    this.state = { 
-      description: props.expense ? props.expense.description : '', 
+
+    this.state = {
+      description: props.expense ? props.expense.description : '',
       note: props.expense ? props.expense.note : '',
-      amount: props.expense ? (props.expense.amount / 100).toString() : '',
+      amount: props.expense ? (props.expense.amount).toString() : '',
       createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
       calendarFocused: false
     }
   }
-  
+
 
   handleDescriptionChange = (e) => {
     this.setState({ description: e.target.value });
@@ -65,22 +65,22 @@ class ExpenseForm extends Component {
       <div>
         {this.state.error && <p>{this.state.error}</p>}
         <form onSubmit={this.handleSubmit}>
-          <input 
-            type='text' 
+          <input
+            type='text'
             placeholder='Description'
             autoFocus
             value={this.state.description}
             onChange={this.handleDescriptionChange}
           />
-          <input 
+          <input
             name='amount'
-            type='text' 
+            type='text'
             placeholder='Amount'
             value={this.state.amount}
             onChange={this.handleAmountChange}
           />
-          <textarea 
-            name='note' 
+          <textarea
+            name='note'
             placeholder='Add a note (optional)'
             value={this.state.note}
             onChange={this.handleNoteChange}
@@ -90,9 +90,9 @@ class ExpenseForm extends Component {
             date={this.state.createdAt}
             onDateChange={this.handleDateChange}
             focused={this.state.calendarFocused}
-            onFocusChange={({focused}) => this.setState({calendarFocused: focused})}
+            onFocusChange={({ focused }) => this.setState({ calendarFocused: focused })}
             numberOfMonths={1}
-            isOutsideRange={() => {return false;}}
+            isOutsideRange={() => { return false; }}
           />
           <button>Add Expense</button>
         </form>
