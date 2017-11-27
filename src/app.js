@@ -12,6 +12,7 @@ import testData from './testData.js';
 
 import 'normalize.css';
 import './styles/styles.scss';
+import 'react-dates/lib/css/_datepicker.css';
 
 const store = configureStore();
 store.subscribe(() => {
