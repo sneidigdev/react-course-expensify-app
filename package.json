@@ -11,6 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "express": "^4.15.4",
     "moment": "^2.19.2",
     "react": "^16.0.0",
     "react-addons-shallow-compare": "^15.6.2",
