@@ -94,7 +94,7 @@ class ExpenseForm extends Component {
             numberOfMonths={1}
             isOutsideRange={() => { return false; }}
           />
-          <button>Add Expense</button>
+          <button>Submit</button>
         </form>
       </div>
     );

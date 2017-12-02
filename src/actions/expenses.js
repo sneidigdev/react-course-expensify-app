@@ -35,9 +35,27 @@ export const removeExpenseAction = (id) => (
   }
 );
 
+export const startRemoveExpenseAction = (id) => {
+  return (dispatch) => {
+    return database.ref(`expenses/${id}`).remove()
+      .then( () => {
+        dispatch(removeExpenseAction(id));
+      });
+  };
+};
+
 export const editExpenseAction = (id, edit) => ( 
   { 
     type: actionTypes.EDIT_EXPENSE, 
     payload: { ...edit, id } 
   }
 );
+
+export const startEditExpenseAction = (id, edit) => {
+  return (dispatch) => {
+    return database.ref(`expenses/${id}`).update(edit)
+      .then( () => {
+        dispatch(editExpenseAction(id, edit));
+      });
+  };
+};
