@@ -6,12 +6,12 @@ import Header from '../components/Header';
 
 class PrivateRoute extends Component {
   renderBasedOnAuth = (isAuthenticated, WrappedComponent) => {
-    return () => {
+    return (props) => {
       return isAuthenticated ?
         (
           <div>
             <Header />
-            <WrappedComponent {...this.props} />
+            <WrappedComponent {...props} />
           </div>
         ) :
         (

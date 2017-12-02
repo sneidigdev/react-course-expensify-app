@@ -7,16 +7,18 @@ const addExpenseAction = (expense) => ({
 });
 
 export const startAddExpenseAction = (expenseData = {}) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     const {
       description = '', 
       note = '', 
       amount = 0, 
       createdAt = 0
     } = expenseData;
+    
+    const uid = getState().auth.uid;
 
     const expense = { description, note, amount, createdAt };
-    database.ref('expenses').push(expense)
+    database.ref(`users/${uid}/expenses`).push(expense)
       .then(({key}) => {
         dispatch(addExpenseAction(
           {
@@ -36,8 +38,10 @@ export const removeExpenseAction = (id) => (
 );
 
 export const startRemoveExpenseAction = (id) => {
-  return (dispatch) => {
-    return database.ref(`expenses/${id}`).remove()
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+
+    return database.ref(`users/${uid}/expenses/${id}`).remove()
       .then( () => {
         dispatch(removeExpenseAction(id));
       });
@@ -52,8 +56,10 @@ export const editExpenseAction = (id, edit) => (
 );
 
 export const startEditExpenseAction = (id, edit) => {
-  return (dispatch) => {
-    return database.ref(`expenses/${id}`).update(edit)
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+
+    return database.ref(`users/${uid}/expenses/${id}`).update(edit)
       .then( () => {
         dispatch(editExpenseAction(id, edit));
       });
@@ -62,13 +68,15 @@ export const startEditExpenseAction = (id, edit) => {
 
 // SET_EXPENSES
 export const setExpensesAction = (expenses) => ({
-  type: 'SET_EXPENSES',
-  expenses
+  type: actionTypes.SET_EXPENSES,
+  payload: expenses
 });
 
 export const startSetExpensesAction = () => {
-  return (dispatch) => {
-    return database.ref('expenses').once('value').then((snapshot) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+
+    return database.ref(`users/${uid}/expenses`).once('value').then((snapshot) => {
       const expenses = [];
 
       snapshot.forEach((childSnapshot) => {

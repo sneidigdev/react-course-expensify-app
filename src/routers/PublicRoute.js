@@ -6,13 +6,13 @@ import Header from '../components/Header';
 
 class PublicRoute extends Component {
   renderBasedOnAuth = (isAuthenticated, WrappedComponent) => {
-    return () => {
+    return (props) => {
       return isAuthenticated ?
         (
           <Redirect to='/dashboard' />
         ) :
         (
-          <WrappedComponent {...this.props} />
+          <WrappedComponent {...props} />
         );
     }
   }
