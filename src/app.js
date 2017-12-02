@@ -6,7 +6,7 @@ import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import getVisibleExpense from './selectors/expenses';
 
-import { addExpenseAction } from './actions/expenses';
+import { startAddExpenseAction } from './actions/expenses';
 
 import testData from './testData.js';
 
@@ -22,7 +22,7 @@ store.subscribe(() => {
 });
 
 testData.forEach((item) => {
-  store.dispatch(addExpenseAction(item));
+  store.dispatch(startAddExpenseAction(item));
 });
 
 const App = () => (

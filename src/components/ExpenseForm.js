@@ -49,7 +49,7 @@ class ExpenseForm extends Component {
       description: this.state.description,
       amount: parseFloat(this.state.amount, 10),
       note: this.state.note,
-      createdAt: this.state.createdAt
+      createdAt: this.state.createdAt.valueOf()
     };
 
     if (!data.description || !this.state.amount) {
