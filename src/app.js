@@ -8,8 +8,6 @@ import getVisibleExpense from './selectors/expenses';
 
 import { startAddExpenseAction } from './actions/expenses';
 
-import testData from './testData.js';
-
 import 'normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
@@ -19,10 +17,6 @@ store.subscribe(() => {
   const state = store.getState();
   console.log(state);
   console.log(getVisibleExpense(state.expenses, state.filters));
-});
-
-testData.forEach((item) => {
-  store.dispatch(startAddExpenseAction(item));
 });
 
 const App = () => (
