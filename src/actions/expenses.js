@@ -59,3 +59,26 @@ export const startEditExpenseAction = (id, edit) => {
       });
   };
 };
+
+// SET_EXPENSES
+export const setExpensesAction = (expenses) => ({
+  type: 'SET_EXPENSES',
+  expenses
+});
+
+export const startSetExpensesAction = () => {
+  return (dispatch) => {
+    return database.ref('expenses').once('value').then((snapshot) => {
+      const expenses = [];
+
+      snapshot.forEach((childSnapshot) => {
+        expenses.push({
+          id: childSnapshot.key,
+          ...childSnapshot.val()
+        });
+      });
+
+      dispatch(setExpensesAction(expenses));
+    });
+  };
+};
