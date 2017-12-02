@@ -15,7 +15,6 @@ class Header extends Component {
         <h1>Expensify</h1>
         <NavLink exact to='/dashboard' activeClassName='is-active'>Dashboard</NavLink>
         <NavLink to='/create' activeClassName='is-active'>Create Expense</NavLink>
-        <NavLink to='/help' activeClassName='is-active'>Help</NavLink>
         <button onClick={this.handleLogout}>Logout</button>
       </header>
     )
