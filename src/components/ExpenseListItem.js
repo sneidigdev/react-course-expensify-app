@@ -7,19 +7,14 @@ class ExpenseListItem extends Component {
   render() {
     const item = this.props.item;
     return (
-      <div>
-        <Link to={`/edit/${item.id}`}>
-          <h3>{item.description}</h3>
-        </Link>
-        <p>
-          {numeral(item.amount).format('$0,0.00')}
-          -- 
-          {moment(item.createdAt).format('MMM Do, YYYY')}
-        </p>
-        <p>
-          {item.note}
-        </p>
-      </div>
+      <Link className='list-item' to={`/edit/${item.id}`}>
+        <div>
+          <h3 className='list-item__title'>{item.description}</h3>
+          <span className='list-item__sub-title'>{moment(item.createdAt).format('MMM Do, YYYY')}</span>
+          <p>{item.note}</p>
+        </div>
+        <h3 className='list-item__data'>{numeral(item.amount).format('$0,0.00')}</h3>
+      </Link>
     );
   }
 };

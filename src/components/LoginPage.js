@@ -10,7 +10,13 @@ class LoginPage extends Component {
 
   render = () => {
     return (
-      <button onClick={this.handleLogin}>Login</button>
+      <div className='box-layout'>
+        <div className='box-layout__box'>
+          <h1 className='layout__title'>Expensify App</h1>
+          <p>Get your expenses organized</p>
+          <button className='button' onClick={this.handleLogin}>Login with Google</button>
+        </div>
+      </div>
     )
   }
 }

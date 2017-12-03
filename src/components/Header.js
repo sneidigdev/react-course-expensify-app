@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { startLogoutAction } from '../actions/auth';
 
@@ -11,11 +11,15 @@ class Header extends Component {
 
   render = () => {
     return (
-      <header>
-        <h1>Expensify</h1>
-        <NavLink exact to='/dashboard' activeClassName='is-active'>Dashboard</NavLink>
-        <NavLink to='/create' activeClassName='is-active'>Create Expense</NavLink>
-        <button onClick={this.handleLogout}>Logout</button>
+      <header className='header'>
+        <div className='content-container'>
+          <div className='header__content'>
+            <Link className='header__title' to='/dashboard'>
+              <h1>Expensify</h1>
+            </Link>
+            <button className='button button--link' onClick={this.handleLogout}>Logout</button>
+          </div>
+        </div>
       </header>
     )
   }
