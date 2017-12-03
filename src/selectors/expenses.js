@@ -5,7 +5,7 @@ export default (expenses, filters) => {
     const createdAtMoment = moment(item.createdAt);
     const startDateMatch = filters.startDate ? filters.startDate.isSameOrBefore(createdAtMoment, 'day') : true;
     const endDateMatch = filters.endDate ? filters.endDate.isSameOrAfter(createdAtMoment, 'day') : true;
-    const textMatch = filters.text ? item.description.toLowerCase().includes(filters.text) : true;
+    const textMatch = filters.text ? item.description.toLowerCase().includes(filters.text.toLowerCase()) : true;
 
     return textMatch && startDateMatch && endDateMatch;
   })
